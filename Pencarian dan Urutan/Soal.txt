@@ -1,0 +1,21 @@
+tugas harian #2:
+
+judul: pencarian & urutan
+soal: 
+membuat mini program yang memiliki fitur berikut :
+- mengurutkan baris dari yg terkecil hingga yg terbesar
+- mengurutkan baris dari yg trbesar hingga yg trkecil
+- mengidentifikasi dalam barisan ada bilangan prima dan membuat barisan bilangan prima itu
+- membuat urutan dari input menjadi urutan sisa bagi bilangan itu dengan 2
+
+contoh:
+input: 9578457231
+output:
+urutan dari yg trkecil
+1234557789
+urutan dari yg trbesar
+9877554321
+urutan bil prima
+235577
+urutan sisa bagi
+111111
