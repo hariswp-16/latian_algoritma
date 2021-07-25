@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Binary tree</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Sorts+Mill+Goudy" rel="stylesheet">
+
+    <style>
+        #heading {
+            font-family: 'Sorts Mill Goudy', serif;
+            font-size: 45px;
+            text-align: center;
+            padding: 100px;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        #label {
+            font-family: 'Raleway', sans-serif;
+            font-size: 20px;
+            text-align: center;
+            padding: 5px;
+            color: #ABBBFF;
+        }
+
+        #app {
+            width: 95%;
+            background-color: #f1f1f1;
+            border: 1px solid black;
+            padding: 15px;
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: inline-block;
+            font-size: 20px;
+            margin: 2px 2px;
+            border-radius: 12px;
+        }
+
+        button {
+            background-color: #ced0d8;
+            border: none;
+            color: rgb(14, 13, 13);
+            padding: 15px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        input {
+            background-color: #ced0d8;
+            border: none;
+            color: rgb(12, 12, 12);
+            padding: 15px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <br>
+    <label id="heading">Binary Search</label><br><br>
+    <a href="">Bisa Kasus Pencarian tentang no urut pasien di Rumah sakit</a><br><br>
+    <a href="">Bisa Kasus Pencarian tentang no antrian sembako</a><br><br>
+    <a href="">Bisa Kasus Pencarian tentang Data Siswa</a><br><br>
+
+    <div id="app">
+        <form id='my_form' action="javascript:myFunction() false;">
+            <label for="array">Atur Array : </label>
+            <input id="array" type="number" v-model.number="arraySize" value="submit">
+            <button @click="addSizeToArray" type="submit">Buat array</button>
+        </form><br><br>
+        <span>{{ array }}</span><br><br><br>
+        <label for="search-for">Cari :</label>
+        <input type="number" v-model.number="numberToSearchFor" id="search-for">
+        <button @click="binarySearch" type="submit">Submit</button><br><br>
+        <span v-if=numberNotInarray>Angka {{ numberToSearchFor }} <b>Tidak ditemukan </b>di dalam array</span><br><br>
+        <span v-if=isNumberThere><b>Ditemukan </b>, Angka {{ numberToSearchFor }} terdapat di dalam array</span><br><br>
+        <span>Membutuhkan <b>{{ actionsPerformed }}</b> langkah untuk menemukan angka tersebut</span>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            array: [],
+            arraySize: "",
+            numberToSearchFor: "",
+            actionsPerformed: 0,
+            isNumberThere: false,
+            numberNotInarray: false
+        },
+        methods: {
+            addSizeToArray: function () {
+                this.numberNotInarray = false;
+                this.actionsPerformed = 0;
+                this.isNumberThere = false;
+                this.array = Array.apply(null, Array(this.arraySize)).map(function (_, i) { return i; });
+            },
+            binarySearch: function () {
+                numberToSearchFor = this.numberToSearchFor;
+                if (!this.isNumberThere && this.numberNotInarray == false) {
+                    this.actionsPerformed += 1;
+                }
+                array = this.array
+                pivot = Math.floor(array.length / 2)
+                if (numberToSearchFor > array.slice(-1).pop() || numberToSearchFor < array[0]) {
+                    this.numberNotInarray = true;
+                    return false;
+                }
+                if (numberToSearchFor === array[pivot]) {
+                    this.isNumberThere = true
+                    return true;
+                }
+                if (numberToSearchFor < array[pivot]) {
+                    array.splice(pivot)
+                    //return this.binarySearch(numberToSearchFor, array.slice(pivot-1));
+                }
+                if (numberToSearchFor > array[pivot]) {
+                    array.splice(0, (pivot + 1))
+                    //return this.binarySearch(numberToSearchFor, array.slice(0, (pivot-1)));
+                }
+            }
+        }
+    })
+</script>
+
+</html>
